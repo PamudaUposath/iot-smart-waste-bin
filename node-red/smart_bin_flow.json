@@ -1,0 +1,558 @@
+[
+    {
+        "id": "8a0dbf0b9e3c1111",
+        "type": "tab",
+        "label": "Smart Bin Dashboard",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "bkr-hive",
+        "type": "mqtt-broker",
+        "name": "HiveMQ Public",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthQos": "0",
+        "willQos": "0"
+    },
+    {
+        "id": "tab1",
+        "type": "ui_tab",
+        "name": "Jaffna MC Smart Bins",
+        "icon": "delete",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "grp_ctrl",
+        "type": "ui_group",
+        "name": "Admin Controls",
+        "tab": "tab1",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "grp_info",
+        "type": "ui_group",
+        "name": "Admin View",
+        "tab": "tab1",
+        "order": 2,
+        "disp": true,
+        "width": "7",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c6e8576bde126cc4",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "sw_lock",
+        "type": "ui_switch",
+        "z": "8a0dbf0b9e3c1111",
+        "name": "Lock Bin",
+        "label": "Admin Lock Bin",
+        "tooltip": "",
+        "group": "grp_ctrl",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "decouple": "false",
+        "topic": "smartbin/Bin1/cmd/lock",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "TRUE",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "FALSE",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": true,
+        "className": "",
+        "x": 450,
+        "y": 80,
+        "wires": [
+            [
+                "mqtt_out_lock"
+            ]
+        ]
+    },
+    {
+        "id": "btn_open",
+        "type": "ui_button",
+        "z": "8a0dbf0b9e3c1111",
+        "name": "Open Lid",
+        "group": "grp_ctrl",
+        "order": 2,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Open Lid",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "fa-unlock",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "smartbin/Bin1/cmd/open",
+        "x": 445,
+        "y": 130,
+        "wires": [
+            [
+                "mqtt_out_open"
+            ]
+        ]
+    },
+    {
+        "id": "btn_close",
+        "type": "ui_button",
+        "z": "8a0dbf0b9e3c1111",
+        "name": "Close Lid",
+        "group": "grp_ctrl",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Close Lid",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "fa-lock",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "smartbin/Bin1/cmd/close",
+        "x": 446,
+        "y": 180,
+        "wires": [
+            [
+                "mqtt_out_close"
+            ]
+        ]
+    },
+    {
+        "id": "mqtt_out_lock",
+        "type": "mqtt out",
+        "z": "8a0dbf0b9e3c1111",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "bkr-hive",
+        "x": 680,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "mqtt_out_open",
+        "type": "mqtt out",
+        "z": "8a0dbf0b9e3c1111",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "bkr-hive",
+        "x": 680,
+        "y": 130,
+        "wires": []
+    },
+    {
+        "id": "mqtt_out_close",
+        "type": "mqtt out",
+        "z": "8a0dbf0b9e3c1111",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "bkr-hive",
+        "x": 680,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "mqtt_in_tele",
+        "type": "mqtt in",
+        "z": "8a0dbf0b9e3c1111",
+        "name": "tele",
+        "topic": "smartbin/Bin1/tele",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "bkr-hive",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 420,
+        "y": 260,
+        "wires": [
+            [
+                "json_tele"
+            ]
+        ]
+    },
+    {
+        "id": "json_tele",
+        "type": "json",
+        "z": "8a0dbf0b9e3c1111",
+        "name": "parse tele",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 600,
+        "y": 260,
+        "wires": [
+            [
+                "g_fill",
+                "txt_locked",
+                "txt_last",
+                "tmpl_led",
+                "txt_loc",
+                "76e81dbed28d2cde"
+            ]
+        ]
+    },
+    {
+        "id": "g_fill",
+        "type": "ui_gauge",
+        "z": "8a0dbf0b9e3c1111",
+        "name": "Fill %",
+        "group": "grp_info",
+        "order": 1,
+        "width": 7,
+        "height": 5,
+        "gtype": "donut",
+        "title": "Bin Storage",
+        "label": "%",
+        "format": "{{msg.payload.fill}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00ff00",
+            "#ffff00",
+            "#ff0e0e"
+        ],
+        "seg1": "",
+        "seg2": "90",
+        "diff": false,
+        "className": "",
+        "x": 810,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "txt_locked",
+        "type": "ui_text",
+        "z": "8a0dbf0b9e3c1111",
+        "group": "grp_info",
+        "order": 3,
+        "width": 7,
+        "height": 1,
+        "name": "Locked",
+        "label": "Locked",
+        "format": "{{msg.payload.locked ? 'YES' : 'NO'}}",
+        "layout": "row-spread",
+        "x": 820,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "txt_last",
+        "type": "ui_text",
+        "z": "8a0dbf0b9e3c1111",
+        "group": "grp_info",
+        "order": 6,
+        "width": 7,
+        "height": 1,
+        "name": "Last Trigger",
+        "label": "Last Trigger",
+        "format": "{{msg.payload.lastTriggerAt}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 890,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "txt_loc",
+        "type": "ui_text",
+        "z": "8a0dbf0b9e3c1111",
+        "group": "grp_info",
+        "order": 5,
+        "width": 7,
+        "height": 1,
+        "name": "Location",
+        "label": "Location",
+        "format": "{{msg.payload.location}}",
+        "layout": "row-spread",
+        "x": 820,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "tmpl_led",
+        "type": "ui_template",
+        "z": "8a0dbf0b9e3c1111",
+        "group": "grp_info",
+        "name": "LED",
+        "order": 2,
+        "width": 7,
+        "height": 1,
+        "format": "<div style=\"display:flex; align-items:center; justify-content:space-between; width:100%;\">\n  <div style=\"display:flex; align-items:center; gap:8px;\">\n    <div\n      style=\"width:22px; height:22px; border-radius:50%; background: {{msg.payload.led==='red'?'#FF0E0E':'#0000FF'}};\">\n    </div>\n    <div style=\"font-weight:normal;\">LED:</div>\n  </div>\n  <div style=\"font-weight:bold; color: {{msg.payload.led==='red'?'#FF0E0E':'#0000FF'}};\">\n    {{msg.payload.led | uppercase}}\n  </div>\n</div>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 810,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "mqtt_in_state",
+        "type": "mqtt in",
+        "z": "8a0dbf0b9e3c1111",
+        "name": "state (retained)",
+        "topic": "smartbin/Bin1/state",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "bkr-hive",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 430,
+        "y": 460,
+        "wires": [
+            [
+                "json_state",
+                "logs_inject"
+            ]
+        ]
+    },
+    {
+        "id": "json_state",
+        "type": "json",
+        "z": "8a0dbf0b9e3c1111",
+        "name": "parse state",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 610,
+        "y": 460,
+        "wires": [
+            [
+                "g_fill",
+                "txt_locked",
+                "txt_last",
+                "tmpl_led",
+                "txt_loc",
+                "76e81dbed28d2cde"
+            ]
+        ]
+    },
+    {
+        "id": "mqtt_in_log",
+        "type": "mqtt in",
+        "z": "8a0dbf0b9e3c1111",
+        "d": true,
+        "name": "log",
+        "topic": "smartbin/Bin1/log",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "bkr-hive",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 410,
+        "y": 720,
+        "wires": [
+            [
+                "logs_inject"
+            ]
+        ]
+    },
+    {
+        "id": "logs_inject",
+        "type": "function",
+        "z": "8a0dbf0b9e3c1111",
+        "d": true,
+        "name": "Format log line",
+        "func": "let t = new Date().toLocaleString();\nif (typeof msg.payload === 'object') {\n  msg.payload = JSON.stringify(msg.payload);\n}\nmsg.payload = `[${t}] ${msg.payload}`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 700,
+        "wires": [
+            [
+                "txt_logs"
+            ]
+        ]
+    },
+    {
+        "id": "txt_logs",
+        "type": "ui_text",
+        "z": "8a0dbf0b9e3c1111",
+        "d": true,
+        "group": "",
+        "order": 1,
+        "width": 12,
+        "height": 8,
+        "name": "Logs",
+        "label": "Logs",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 930,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "76e81dbed28d2cde",
+        "type": "ui_text",
+        "z": "8a0dbf0b9e3c1111",
+        "group": "grp_info",
+        "order": 4,
+        "width": 7,
+        "height": 1,
+        "name": "Code",
+        "label": "Bin Code",
+        "format": "{{msg.payload.code}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1010,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "c5856e2e5332d3a5",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6"
+        }
+    }
+]
